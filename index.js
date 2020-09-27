@@ -88,9 +88,9 @@ function displayAudioResults(responseJson) {
 /********** SINGLE PURPOSE FUNCTIONS **********/
 
 function submitInputs(type, input) {
-  if (type === 'Photo') {
-  } else if (type === 'Video') {
-  } else if (type === 'Audio') {
+  if (type === 'photo') {
+  } else if (type === 'video') {
+  } else if (type === 'audio') {
     const params = {
       token: audioApiKey,
       fields: 'id,name,description,previews,download,images',
