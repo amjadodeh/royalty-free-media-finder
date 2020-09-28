@@ -79,37 +79,42 @@ function formatQueryParams(params) {
 function displayPhotoResults(responseJson) {
   console.log(responseJson);
   $('#results-list').empty();
-  for (let i = 0; i < responseJson.photos.length; i++) {
-    $('#results-list').append(
-      `<li>
-      <img src="${responseJson.photos[i].src.medium}" alt="waveform image">
-      <br>
-      <p>By <a href="${responseJson.photos[i].photographer_url}">${responseJson.photos[i].photographer}</a></p>
-      <a href='${responseJson.photos[i].src.original}'>Download Here</a>
-      </li>
-      <br>
-      <br>`
-    );
-  }
-  if (responseJson.page === 1) {
-    $('#results-list').append(
-      `
-      <br>
-      <br>
-      <a class='next_page' href='${responseJson.next_page}'>Next</a>
-      `
-    );
+  if (responseJson.photos.length === 0) {
+    $('#results-list').text(`No results... Try Searching for something else.`);
   } else {
-    $('#results-list').append(
-      `
-      <br>
-      <br>
-      <a class='prev_page' href='${responseJson.prev_page}'>Previous</a>
-      <br>
-      <a class='next_page' href='${responseJson.next_page}'>Next</a>
-      `
-    );
+    for (let i = 0; i < responseJson.photos.length; i++) {
+      $('#results-list').append(
+        `<li>
+        <img src="${responseJson.photos[i].src.medium}" alt="waveform image">
+        <br>
+        <p>By <a href="${responseJson.photos[i].photographer_url}">${responseJson.photos[i].photographer}</a></p>
+        <a href='${responseJson.photos[i].src.original}'>Download Here</a>
+        </li>
+        <br>
+        <br>`
+      );
+    }
+    if (responseJson.page === 1) {
+      $('#results-list').append(
+        `
+        <br>
+        <br>
+        <a class='next_page' href='${responseJson.next_page}'>Next</a>
+        `
+      );
+    } else {
+      $('#results-list').append(
+        `
+        <br>
+        <br>
+        <a class='prev_page' href='${responseJson.prev_page}'>Previous</a>
+        <br>
+        <a class='next_page' href='${responseJson.next_page}'>Next</a>
+        `
+      );
+    }
   }
+
   $('#results').removeClass('hidden');
 }
 
