@@ -85,10 +85,10 @@ function displayPhotoResults(responseJson) {
     for (let i = 0; i < responseJson.photos.length; i++) {
       $('#results-list').append(
         `<li>
-        <img src="${responseJson.photos[i].src.medium}" alt="waveform image">
+        <img src="${responseJson.photos[i].src.medium}" alt="preview image">
         <br>
-        <p>By <a href="${responseJson.photos[i].photographer_url}">${responseJson.photos[i].photographer}</a></p>
-        <a href='${responseJson.photos[i].src.original}'>Download Here</a>
+        <p>By <a href="${responseJson.photos[i].photographer_url}" target='_blank'>${responseJson.photos[i].photographer}</a></p>
+        <a href='${responseJson.photos[i].src.original}' target='_blank'>Download Here</a>
         </li>
         <br>
         <br>`
@@ -127,10 +127,18 @@ function displayVideoResults(responseJson) {
     for (let i = 0; i < responseJson.videos.length; i++) {
       $('#results-list').append(
         `<li>
-        <img src="${responseJson.videos[i].video_pictures[1].picture}" alt="video preview image">
-        <p>By <a href="${responseJson.videos[i].user.url}">${responseJson.videos[i].user.name}</a></p>
-        <a href='${responseJson.videos[i].video_files[1].link}'>View And Download Here</a>
+        <video width="400" controls>
+          <source src="${responseJson.videos[i].video_files[2].link}" type="video/mp4">
+          Your browser does not support HTML video.
+        </video>
+        <p>By <a href="${responseJson.videos[i].user.url}" target='_blank'>${responseJson.videos[i].user.name}</a></p>
+        <p>Downloads:</p>
+        <a href='${responseJson.videos[i].video_files[0].link}' target='_blank'>${responseJson.videos[i].video_files[0].height}x${responseJson.videos[i].video_files[0].width}</a>
+        <a href='${responseJson.videos[i].video_files[1].link}' target='_blank'>${responseJson.videos[i].video_files[1].height}x${responseJson.videos[i].video_files[1].width}</a>
+        <a href='${responseJson.videos[i].video_files[2].link}' target='_blank'>${responseJson.videos[i].video_files[2].height}x${responseJson.videos[i].video_files[2].width}</a>
+        <a href='${responseJson.videos[i].video_files[3].link}' target='_blank'>${responseJson.videos[i].video_files[3].height}x${responseJson.videos[i].video_files[3].width}</a>
         </li>
+        <br>
         <br>
         <br>`
       );
@@ -139,14 +147,12 @@ function displayVideoResults(responseJson) {
       $('#results-list').append(
         `
         <br>
-        <br>
         <a class='next_page' href='${responseJson.url.slice(37, -1)}'>Next</a>
         `
       );
     } else {
       $('#results-list').append(
         `
-        <br>
         <br>
         <a class='prev_page' href='${responseJson.url.slice(
           37,
@@ -177,14 +183,15 @@ function displayAudioResults(responseJson) {
         Preview unavailable. Your browser does not support the audio element.
         </audio>
         <p>${responseJson.results[i].description}</p>
-        <a href='${responseJson.results[i].download}'>Download Here</a>
-        </li>`
+        <a href='${responseJson.results[i].previews['preview-hq-mp3']}' target='_blank'>Download Here</a>
+        </li>
+        <br>
+        <br>`
       );
     }
     if (responseJson.previous == null) {
       $('#results-list').append(
         `
-        <br>
         <br>
         <a class='next' href='${responseJson.next}'>Next</a>
         `
@@ -192,7 +199,6 @@ function displayAudioResults(responseJson) {
     } else {
       $('#results-list').append(
         `
-        <br>
         <br>
         <a class='prev' href='${responseJson.previous}'>Previous</a>
         <br>
