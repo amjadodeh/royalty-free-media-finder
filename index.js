@@ -94,7 +94,7 @@ function displayPhotoResults(responseJson) {
         <br>`
       );
     }
-    if (responseJson.page === 1) {
+    if (responseJson.page === 1 && responseJson.total_results > 15) {
       $('#results-list').append(
         `
         <br>
@@ -102,7 +102,18 @@ function displayPhotoResults(responseJson) {
         <a class='next_page' href='${responseJson.next_page}'>Next</a>
         `
       );
-    } else {
+    } else if (
+      responseJson.page !== 1 &&
+      15 * responseJson.page >= responseJson.total_results
+    ) {
+      $('#results-list').append(
+        `
+        <br>
+        <br>
+        <a class='prev_page' href='${responseJson.prev_page}'>Previous</a>
+        `
+      );
+    } else if (responseJson.page !== 1 && responseJson.photos.length === 15) {
       $('#results-list').append(
         `
         <br>
@@ -143,14 +154,27 @@ function displayVideoResults(responseJson) {
         <br>`
       );
     }
-    if (responseJson.page === 1) {
+    if (responseJson.page === 1 && responseJson.total_results > 15) {
       $('#results-list').append(
         `
         <br>
         <a class='next_page' href='${responseJson.url.slice(37, -1)}'>Next</a>
         `
       );
-    } else {
+    } else if (
+      responseJson.page !== 1 &&
+      15 * responseJson.page >= responseJson.total_results
+    ) {
+      $('#results-list').append(
+        `
+        <br>
+        <a class='prev_page' href='${responseJson.url.slice(
+          37,
+          -1
+        )}'>Previous</a>
+        `
+      );
+    } else if (responseJson.page !== 1 && responseJson.videos.length === 15) {
       $('#results-list').append(
         `
         <br>
@@ -170,7 +194,7 @@ function displayVideoResults(responseJson) {
 function displayAudioResults(responseJson) {
   console.log(responseJson);
   $('#results-list').empty();
-  if (responseJson.next == null) {
+  if (responseJson.results.length === 0) {
     $('#results-list').text(`No results... Try Searching for something else.`);
   } else {
     for (let i = 0; i < responseJson.results.length; i++) {
@@ -189,14 +213,21 @@ function displayAudioResults(responseJson) {
         <br>`
       );
     }
-    if (responseJson.previous == null) {
+    if (responseJson.previous == null && responseJson.next != null) {
       $('#results-list').append(
         `
         <br>
         <a class='next' href='${responseJson.next}'>Next</a>
         `
       );
-    } else {
+    } else if (responseJson.previous != null && responseJson.next == null) {
+      $('#results-list').append(
+        `
+        <br>
+        <a class='prev' href='${responseJson.previous}'>Previous</a>
+        `
+      );
+    } else if (responseJson.previous != null && responseJson.next != null) {
       $('#results-list').append(
         `
         <br>
@@ -246,11 +277,7 @@ function watchPrevNextPhotoVideo() {
     } else {
       videoPage -= 1;
       const url =
-        videoSearchURL +
-        $('.next_page').attr('href') +
-        '&page=' +
-        videoPage +
-        '&per_page=15';
+        videoSearchURL + $('.prev_page').attr('href') + '&page=' + videoPage;
       fetchVideoResults(url);
     }
     window.location.hash = 'main-div';
@@ -263,11 +290,7 @@ function watchPrevNextPhotoVideo() {
     } else {
       videoPage += 1;
       const url =
-        videoSearchURL +
-        $('.next_page').attr('href') +
-        '&page=' +
-        videoPage +
-        '&per_page=15';
+        videoSearchURL + $('.next_page').attr('href') + '&page=' + videoPage;
       fetchVideoResults(url);
     }
     window.location.hash = 'main-div';
