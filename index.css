@@ -1,29 +1,159 @@
+/********** Global Styling **********/
+
 * {
-  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  background-color: #f7fff7;
+  color: #4ecdc4;
+  font-family: monospace;
+  text-align: center;
 }
 
-button,
-input[type='text'] {
-  padding: 5px;
-}
-
-button:hover {
-  cursor: pointer;
-}
-
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.error-message {
-  color: red;
+p,
+h3 {
+  color: #a18b26;
 }
 
 .hidden {
   display: none;
+}
+
+#results-list {
+  column-count: 4;
+  column-width: 325px;
+}
+
+.result {
+  position: relative;
+  margin: 0px 15px 30px 15px;
+  list-style: none;
+}
+
+.results-nav {
+  padding: 30px 10px 80px 10px;
+}
+
+.photo,
+.video,
+.waveform {
+  width: 100%;
+  display: block;
+  border: 5px solid #e7e7e7;
+}
+
+.links-div {
+  overflow: hidden;
+}
+
+.user-link,
+.audio {
+  float: left;
+}
+
+.dl-link {
+  float: right;
+}
+
+.user-link,
+.audio {
+  transform: translateX(12px) translateY(-10px);
+}
+
+.dl-link {
+  transform: translateX(-12px) translateY(-10px);
+}
+
+.audio-name {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+}
+
+.audio {
+  width: 80%;
+}
+
+/***** Link Styling *****/
+
+a:link {
+  color: #36968e;
+}
+
+a:hover {
+  color: #41b1a7;
+}
+
+/********** Mobile Styling **********/
+
+.container {
+  width: 95%;
+  margin: auto;
+}
+
+p {
+  font-size: 16px;
+}
+
+.dl-image {
+  width: 26px;
+}
+
+.links-div {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 100%;
+  height: calc(100% - 10px);
+  background: linear-gradient(
+    #00000000,
+    #00000000,
+    #00000000,
+    #00000000,
+    #000000e5
+  );
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.play,
+.pause {
+  position: absolute;
+  top: calc(50% + 5px);
+  left: calc(50% + 5px);
+  width: 60px;
+  transform: translate(-50%, -50%);
+}
+
+/********** Desktop Styling **********/
+
+@media (min-width: 850px) {
+  .container {
+    width: 80%;
+  }
+
+  p {
+    font-size: 12px;
+  }
+
+  .links-div {
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .links-div:hover {
+    opacity: 1;
+  }
+
+  .dl-image {
+    width: 20px;
+  }
+
+  .play,
+  .pause {
+    display: none;
+  }
 }

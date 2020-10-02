@@ -79,48 +79,50 @@ function formatQueryParams(params) {
 function displayPhotoResults(responseJson) {
   console.log(responseJson);
   $('#results-list').empty();
+  $('.results-nav').empty();
   if (responseJson.photos.length === 0) {
-    $('#results-list').text(`No results... Try Searching for something else.`);
+    $('#results-list').html(
+      `<p>No results... Try Searching for something else.</p>`
+    );
   } else {
     for (let i = 0; i < responseJson.photos.length; i++) {
       $('#results-list').append(
-        `<li>
-        <img src="${responseJson.photos[i].src.medium}" alt="preview image">
-        <br>
-        <p>By <a href="${responseJson.photos[i].photographer_url}" target='_blank'>${responseJson.photos[i].photographer}</a></p>
-        <a href='${responseJson.photos[i].src.original}' target='_blank'>Download Here</a>
-        </li>
-        <br>
-        <br>`
+        `<li class='result'>
+        <a href='${responseJson.photos[i].src.original}' target='_blank'><img class='photo' src='${responseJson.photos[i].src.large}' alt='preview image'></a>
+        <div class='links-div'>
+        <p class='user-link'>By <a href='${responseJson.photos[i].photographer_url}' target='_blank'>${responseJson.photos[i].photographer}</a></p>
+        <a class='dl-link' href='${responseJson.photos[i].src.original}' target='_blank'><img class='dl-image' src='images/dl.png' alt='download link'></a>
+        </div>
+        </li>`
       );
     }
     if (responseJson.page === 1 && responseJson.total_results > 15) {
-      $('#results-list').append(
+      $('.results-nav').append(
         `
         <br>
         <br>
-        <a class='next_page' href='${responseJson.next_page}'>Next</a>
+        <p><a class='next_page' href='${responseJson.next_page}'>Next</a></p>
         `
       );
     } else if (
       responseJson.page !== 1 &&
       15 * responseJson.page >= responseJson.total_results
     ) {
-      $('#results-list').append(
+      $('.results-nav').append(
         `
         <br>
         <br>
-        <a class='prev_page' href='${responseJson.prev_page}'>Previous</a>
+        <p><a class='prev_page' href='${responseJson.prev_page}'>Previous</a></p>
         `
       );
     } else if (responseJson.page !== 1 && responseJson.photos.length === 15) {
-      $('#results-list').append(
+      $('.results-nav').append(
         `
         <br>
         <br>
-        <a class='prev_page' href='${responseJson.prev_page}'>Previous</a>
+        <p><a class='prev_page' href='${responseJson.prev_page}'>Previous</a></p>
         <br>
-        <a class='next_page' href='${responseJson.next_page}'>Next</a>
+        <p><a class='next_page' href='${responseJson.next_page}'>Next</a></p>
         `
       );
     }
@@ -132,30 +134,28 @@ function displayPhotoResults(responseJson) {
 function displayVideoResults(responseJson) {
   console.log(responseJson);
   $('#results-list').empty();
+  $('.results-nav').empty();
   if (responseJson.videos.length === 0) {
     $('#results-list').text(`No results... Try Searching for something else.`);
   } else {
     for (let i = 0; i < responseJson.videos.length; i++) {
+      var previewVideoNumber = findPreviewVideo(i, responseJson);
+      var downloadVideoNumber = findDownloadVideo(i, responseJson);
       $('#results-list').append(
-        `<li>
-        <video width="400" controls>
-          <source src="${responseJson.videos[i].video_files[2].link}" type="video/mp4">
+        `<li class='result'>
+        <video class='video' src='${responseJson.videos[i].video_files[previewVideoNumber].link}' loop>
           Your browser does not support HTML video.
         </video>
-        <p>By <a href="${responseJson.videos[i].user.url}" target='_blank'>${responseJson.videos[i].user.name}</a></p>
-        <p>Downloads:</p>
-        <a href='${responseJson.videos[i].video_files[0].link}' target='_blank'>${responseJson.videos[i].video_files[0].height}x${responseJson.videos[i].video_files[0].width}</a>
-        <a href='${responseJson.videos[i].video_files[1].link}' target='_blank'>${responseJson.videos[i].video_files[1].height}x${responseJson.videos[i].video_files[1].width}</a>
-        <a href='${responseJson.videos[i].video_files[2].link}' target='_blank'>${responseJson.videos[i].video_files[2].height}x${responseJson.videos[i].video_files[2].width}</a>
-        <a href='${responseJson.videos[i].video_files[3].link}' target='_blank'>${responseJson.videos[i].video_files[3].height}x${responseJson.videos[i].video_files[3].width}</a>
-        </li>
-        <br>
-        <br>
-        <br>`
+        <div class='links-div'>
+        <p class='user-link'>By <a href='${responseJson.videos[i].user.url}' target='_blank'>${responseJson.videos[i].user.name}</a></p>
+        <a class='dl-link' href='${responseJson.videos[i].video_files[downloadVideoNumber].link}' target='_blank'><img class='dl-image' src='images/dl.png' alt='download link'></a>
+        </div>
+        <img class='play' src='images/play.png' alt='play and pause button'>
+        </li>`
       );
     }
     if (responseJson.page === 1 && responseJson.total_results > 15) {
-      $('#results-list').append(
+      $('.results-nav').append(
         `
         <br>
         <a class='next_page' href='${responseJson.url.slice(37, -1)}'>Next</a>
@@ -165,7 +165,7 @@ function displayVideoResults(responseJson) {
       responseJson.page !== 1 &&
       15 * responseJson.page >= responseJson.total_results
     ) {
-      $('#results-list').append(
+      $('.results-nav').append(
         `
         <br>
         <a class='prev_page' href='${responseJson.url.slice(
@@ -175,7 +175,7 @@ function displayVideoResults(responseJson) {
         `
       );
     } else if (responseJson.page !== 1 && responseJson.videos.length === 15) {
-      $('#results-list').append(
+      $('.results-nav').append(
         `
         <br>
         <a class='prev_page' href='${responseJson.url.slice(
@@ -194,41 +194,40 @@ function displayVideoResults(responseJson) {
 function displayAudioResults(responseJson) {
   console.log(responseJson);
   $('#results-list').empty();
+  $('.results-nav').empty();
   if (responseJson.results.length === 0) {
     $('#results-list').text(`No results... Try Searching for something else.`);
   } else {
     for (let i = 0; i < responseJson.results.length; i++) {
       $('#results-list').append(
-        `<li><h3>${responseJson.results[i].name}</h3>
-        <img src="${responseJson.results[i].images.waveform_m}" alt="waveform image">
-        <br>
-        <audio controls>
-        <source src="${responseJson.results[i].previews['preview-lq-mp3']}" type="audio/mpeg">
+        `<li class='result'>
+        <h3 class='audio-name'>${responseJson.results[i].name}</h3>
+        <img class='waveform' src='${responseJson.results[i].images.waveform_m}' alt='waveform image'>
+        <div class='links-div'>
+        <audio class='audio' src='${responseJson.results[i].previews['preview-lq-mp3']}' controls>
         Preview unavailable. Your browser does not support the audio element.
         </audio>
-        <p>${responseJson.results[i].description}</p>
-        <a href='${responseJson.results[i].previews['preview-hq-mp3']}' target='_blank'>Download Here</a>
-        </li>
-        <br>
-        <br>`
+        <a class='dl-link' href='${responseJson.results[i].previews['preview-hq-mp3']}' target='_blank'><img class='dl-image' src='images/dl.png' alt='download link'></a>
+        </div>
+        </li>`
       );
     }
     if (responseJson.previous == null && responseJson.next != null) {
-      $('#results-list').append(
+      $('.results-nav').append(
         `
         <br>
         <a class='next' href='${responseJson.next}'>Next</a>
         `
       );
     } else if (responseJson.previous != null && responseJson.next == null) {
-      $('#results-list').append(
+      $('.results-nav').append(
         `
         <br>
         <a class='prev' href='${responseJson.previous}'>Previous</a>
         `
       );
     } else if (responseJson.previous != null && responseJson.next != null) {
-      $('#results-list').append(
+      $('.results-nav').append(
         `
         <br>
         <a class='prev' href='${responseJson.previous}'>Previous</a>
@@ -266,10 +265,64 @@ function submitInputs(type, input) {
   }
 }
 
+function findPreviewVideo(i, responseJson) {
+  for (let n = 0; n < responseJson.videos[i].video_files.length; n++) {
+    if (responseJson.videos[i].video_files[n].quality == 'sd') {
+      return n;
+    }
+  }
+}
+
+function findDownloadVideo(i, responseJson) {
+  for (let n = 0; n < responseJson.videos[i].video_files.length; n++) {
+    if (
+      responseJson.videos[i].video_files[n].height ===
+      responseJson.videos[i].height
+    ) {
+      return n;
+    }
+  }
+  for (let n = 0; n < responseJson.videos[i].video_files.length; n++) {
+    if (responseJson.videos[i].video_files[n].height === 2160) {
+      return n;
+    } else if (responseJson.videos[i].video_files[n].height === 1440) {
+      return n;
+    } else if (responseJson.videos[i].video_files[n].height === 1080) {
+      return n;
+    } else if (responseJson.videos[i].video_files[n].height === 720) {
+      return n;
+    }
+  }
+  return 2;
+}
+
 /********** EVENT HANDLER FUNCTIONS **********/
 
+function watchVideoPlayer() {
+  $('#results-list').on('click', '.play', function (event) {
+    $(this).prev().prev().get(0).play();
+    $(this).attr('src', 'images/pause.png');
+    $(this).attr('class', 'pause');
+  });
+  $('#results-list').on('click', '.pause', function (event) {
+    $(this).prev().prev().get(0).pause();
+    $(this).attr('src', 'images/play.png');
+    $(this).attr('class', 'play');
+  });
+  $('#results-list').on('mouseenter', '.links-div', function (event) {
+    if ($(this).prev().attr('class') == 'video') {
+      $(this).prev().get(0).play();
+    }
+  });
+  $('#results-list').on('mouseleave', '.links-div', function (event) {
+    if ($(this).prev().attr('class') == 'video') {
+      $(this).prev().get(0).pause();
+    }
+  });
+}
+
 function watchPrevNextPhotoVideo() {
-  $('#results-list').on('click', '.prev_page', function (event) {
+  $('.results-nav').on('click', '.prev_page', function (event) {
     event.preventDefault();
     const url = $('.prev_page').attr('href');
     if ($('.prev_page').attr('href').includes('v1')) {
@@ -282,7 +335,7 @@ function watchPrevNextPhotoVideo() {
     }
     window.location.hash = 'main-div';
   });
-  $('#results-list').on('click', '.next_page', function (event) {
+  $('.results-nav').on('click', '.next_page', function (event) {
     event.preventDefault();
     if ($('.next_page').attr('href').includes('v1')) {
       const url = $('.next_page').attr('href');
@@ -298,13 +351,13 @@ function watchPrevNextPhotoVideo() {
 }
 
 function watchPrevNextAudio() {
-  $('#results-list').on('click', '.prev', function (event) {
+  $('.results-nav').on('click', '.prev', function (event) {
     event.preventDefault();
     const url = $('.prev').attr('href') + '&token=' + audioApiKey;
     fetchAudioResults(url);
     window.location.hash = 'main-div';
   });
-  $('#results-list').on('click', '.next', function (event) {
+  $('.results-nav').on('click', '.next', function (event) {
     event.preventDefault();
     const url = $('.next').attr('href') + '&token=' + audioApiKey;
     fetchAudioResults(url);
@@ -324,3 +377,4 @@ function watchForm() {
 $(watchForm);
 $(watchPrevNextPhotoVideo);
 $(watchPrevNextAudio);
+$(watchVideoPlayer);
