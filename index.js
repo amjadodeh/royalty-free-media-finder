@@ -91,7 +91,7 @@ function displayPhotoResults(responseJson) {
         <a href='${responseJson.photos[i].src.original}' target='_blank'><img class='photo' src='${responseJson.photos[i].src.large}' alt='preview image'></a>
         <div class='links-div'>
         <p class='user-link'>By <a href='${responseJson.photos[i].photographer_url}' target='_blank'>${responseJson.photos[i].photographer}</a></p>
-        <a class='dl-link' href='${responseJson.photos[i].src.original}' target='_blank'><img class='dl-image' src='images/dl.png' alt='download link'></a>
+        <a class='dl-link' href='${responseJson.photos[i].src.original}' target='_blank' download='photo.jpeg'><img class='dl-image' src='images/dl.png' alt='download link'></a>
         </div>
         </li>`
       );
@@ -148,7 +148,7 @@ function displayVideoResults(responseJson) {
         </video>
         <div class='links-div'>
         <p class='user-link'>By <a href='${responseJson.videos[i].user.url}' target='_blank'>${responseJson.videos[i].user.name}</a></p>
-        <a class='dl-link' href='${responseJson.videos[i].video_files[downloadVideoNumber].link}' target='_blank'><img class='dl-image' src='images/dl.png' alt='download link'></a>
+        <a class='dl-link' href='${responseJson.videos[i].video_files[downloadVideoNumber].link}' target='_blank' download='video.mp4'><img class='dl-image' src='images/dl.png' alt='download link'></a>
         </div>
         <img class='play' src='images/play.png' alt='play and pause button'>
         </li>`
@@ -207,7 +207,7 @@ function displayAudioResults(responseJson) {
         <audio class='audio' src='${responseJson.results[i].previews['preview-lq-mp3']}' controls>
         Preview unavailable. Your browser does not support the audio element.
         </audio>
-        <a class='dl-link' href='${responseJson.results[i].previews['preview-hq-mp3']}' target='_blank'><img class='dl-image' src='images/dl.png' alt='download link'></a>
+        <a class='dl-link' href='${responseJson.results[i].previews['preview-hq-mp3']}' target='_blank' download='audio.mp3'><img class='dl-image' src='images/dl.png' alt='download link'></a>
         </div>
         </li>`
       );
