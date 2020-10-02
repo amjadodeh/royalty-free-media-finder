@@ -14,7 +14,7 @@ body {
 
 p,
 h3 {
-  color: #a18b26;
+  color: #ffe66d;
 }
 
 .hidden {
@@ -79,11 +79,11 @@ h3 {
 /***** Link Styling *****/
 
 a:link {
-  color: #36968e;
+  color: #4ecdc4;
 }
 
 a:hover {
-  color: #41b1a7;
+  color: #63ebe2;
 }
 
 /********** Mobile Styling **********/
