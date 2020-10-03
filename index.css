@@ -84,6 +84,56 @@ video.video {
   margin-bottom: 15px;
 }
 
+#search-stuff {
+  margin: 35px 0 55px 0;
+  transform: translateX(43px);
+}
+
+input[type='text'] {
+  position: relative;
+  border: 3px #f55255 solid;
+  background-color: #e7e7e7;
+  color: #111111;
+  padding: 12px 85px 12px 20px;
+  font-size: 16px;
+  max-width: 300px;
+}
+
+input[type='submit'] {
+  position: absolute;
+  color: #111111;
+  border: 3px solid #e7e7e7;
+  background-color: #e7e7e7;
+  padding: 9px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  background-image: url(images/search.png);
+  transform: translateX(-64px) translateY(3px);
+}
+
+input[type='submit']:hover {
+  color: #f7f7f7;
+  border-color: #f55255;
+  background-color: #f55255;
+}
+
+#js-media-type {
+  position: absolute;
+  color: #111111;
+  border: 3px solid #f55255;
+  background-color: #e7e7e7;
+  padding: 11px 15px 11px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transform: translateX(-85px) translateY(0px);
+}
+
+#js-media-type:hover {
+  color: #f7f7f7;
+  border-color: #f55255;
+  background-color: #4ecdc4;
+}
+
 /***** Link Styling *****/
 
 a:link {
@@ -112,10 +162,6 @@ h1 {
   color: #4ecdc4;
   font-size: 22px;
   margin: 8px;
-}
-
-#js-form {
-  margin: 35px 0;
 }
 
 #landing-text {
