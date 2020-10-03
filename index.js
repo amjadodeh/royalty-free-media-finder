@@ -143,7 +143,7 @@ function displayVideoResults(responseJson) {
       var downloadVideoNumber = findDownloadVideo(i, responseJson);
       $('#results-list').append(
         `<li class='result'>
-        <video class='video' src='${responseJson.videos[i].video_files[previewVideoNumber].link}' style='background-image: url(${responseJson.videos[i].video_pictures[0].picture});' loop>
+        <video class='video' src='${responseJson.videos[i].video_files[previewVideoNumber].link}' type='video/mp4' style='background-image: url(${responseJson.videos[i].video_pictures[0].picture});' loop>
           Your browser does not support HTML video.
         </video>
         <div class='links-div'>
@@ -293,7 +293,7 @@ function findDownloadVideo(i, responseJson) {
       return n;
     }
   }
-  return 2;
+  return 1;
 }
 
 /********** EVENT HANDLER FUNCTIONS **********/
