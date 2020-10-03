@@ -10,14 +10,16 @@
   </head>
   <body class="landing-body">
     <div class="container" id="main-div">
-      <div id="search-stuff">
+      <div id="logo-title">
         <img
           class="logo"
           src="images/logo.png"
           alt="Royalty Free Media Finder"
         />
         <h1>Royalty Free Media Finder</h1>
+      </div>
 
+      <div id="search-stuff">
         <form id="js-form">
           <select id="js-media-type">
             <option value="photo">Photo</option>
@@ -29,7 +31,8 @@
             type="text"
             name="search-input"
             id="js-search-input"
-            placeholder="Search"
+            placeholder="Search for free photos, videos, and audio"
+            required
           />
 
           <input type="submit" value="Go!" />
@@ -57,7 +60,7 @@
       <section id="results" class="hidden">
         <h2>Search results</h2>
         <ul id="results-list"></ul>
-        <div class="results-nav"></div>
+        <div id="results-nav"></div>
       </section>
     </div>
     <script

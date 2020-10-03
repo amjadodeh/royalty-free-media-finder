@@ -11,7 +11,7 @@ body {
   text-align: center;
 }
 
-p,
+.result p,
 h3 {
   color: #ffe66d;
 }
@@ -31,7 +31,7 @@ h3 {
   list-style: none;
 }
 
-.results-nav {
+#results-nav {
   padding: 30px 10px 80px 10px;
 }
 
@@ -78,6 +78,10 @@ video.video {
 
 .audio {
   width: 80%;
+}
+
+#results > h2 {
+  margin-bottom: 15px;
 }
 
 /***** Link Styling *****/
@@ -193,6 +197,11 @@ p {
   transform: translate(-50%, -50%);
 }
 
+#results-nav a {
+  margin: 5px 20px;
+  font-size: 18px;
+}
+
 /********** Desktop Styling **********/
 
 @media (min-width: 850px) {
@@ -220,5 +229,10 @@ p {
   .play,
   .pause {
     display: none;
+  }
+
+  #results-nav a {
+    margin: 5px 25px;
+    font-size: 14px;
   }
 }

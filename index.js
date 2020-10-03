@@ -79,7 +79,7 @@ function formatQueryParams(params) {
 function displayPhotoResults(responseJson) {
   console.log(responseJson);
   $('#results-list').empty();
-  $('.results-nav').empty();
+  $('#results-nav').empty();
   if (responseJson.photos.length === 0) {
     $('#results-list').html(
       `<p>No results... Try Searching for something else.</p>`
@@ -97,32 +97,31 @@ function displayPhotoResults(responseJson) {
       );
     }
     if (responseJson.page === 1 && responseJson.total_results > 15) {
-      $('.results-nav').append(
+      $('#results-nav').append(
         `
         <br>
         <br>
-        <p><a class='next_page' href='${responseJson.next_page}'>Next</a></p>
+        <a class='next_page' href='${responseJson.next_page}'>Next</a>
         `
       );
     } else if (
       responseJson.page !== 1 &&
       15 * responseJson.page >= responseJson.total_results
     ) {
-      $('.results-nav').append(
+      $('#results-nav').append(
         `
         <br>
         <br>
-        <p><a class='prev_page' href='${responseJson.prev_page}'>Previous</a></p>
+        <a class='prev_page' href='${responseJson.prev_page}'>Previous</a>
         `
       );
     } else if (responseJson.page !== 1 && responseJson.photos.length === 15) {
-      $('.results-nav').append(
+      $('#results-nav').append(
         `
         <br>
         <br>
-        <p><a class='prev_page' href='${responseJson.prev_page}'>Previous</a></p>
-        <br>
-        <p><a class='next_page' href='${responseJson.next_page}'>Next</a></p>
+        <a class='prev_page' href='${responseJson.prev_page}'>Previous</a>
+        <a class='next_page' href='${responseJson.next_page}'>Next</a>
         `
       );
     }
@@ -134,9 +133,11 @@ function displayPhotoResults(responseJson) {
 function displayVideoResults(responseJson) {
   console.log(responseJson);
   $('#results-list').empty();
-  $('.results-nav').empty();
+  $('#results-nav').empty();
   if (responseJson.videos.length === 0) {
-    $('#results-list').text(`No results... Try Searching for something else.`);
+    $('#results-list').html(
+      `<p>No results... Try Searching for something else.</p>`
+    );
   } else {
     for (let i = 0; i < responseJson.videos.length; i++) {
       var previewVideoNumber = findPreviewVideo(i, responseJson);
@@ -155,7 +156,7 @@ function displayVideoResults(responseJson) {
       );
     }
     if (responseJson.page === 1 && responseJson.total_results > 15) {
-      $('.results-nav').append(
+      $('#results-nav').append(
         `
         <br>
         <a class='next_page' href='${responseJson.url.slice(37, -1)}'>Next</a>
@@ -165,7 +166,7 @@ function displayVideoResults(responseJson) {
       responseJson.page !== 1 &&
       15 * responseJson.page >= responseJson.total_results
     ) {
-      $('.results-nav').append(
+      $('#results-nav').append(
         `
         <br>
         <a class='prev_page' href='${responseJson.url.slice(
@@ -175,14 +176,13 @@ function displayVideoResults(responseJson) {
         `
       );
     } else if (responseJson.page !== 1 && responseJson.videos.length === 15) {
-      $('.results-nav').append(
+      $('#results-nav').append(
         `
         <br>
         <a class='prev_page' href='${responseJson.url.slice(
           37,
           -1
         )}'>Previous</a>
-        <br>
         <a class='next_page' href='${responseJson.url.slice(37, -1)}'>Next</a>
         `
       );
@@ -194,9 +194,11 @@ function displayVideoResults(responseJson) {
 function displayAudioResults(responseJson) {
   console.log(responseJson);
   $('#results-list').empty();
-  $('.results-nav').empty();
+  $('#results-nav').empty();
   if (responseJson.results.length === 0) {
-    $('#results-list').text(`No results... Try Searching for something else.`);
+    $('#results-list').html(
+      `<p>No results... Try Searching for something else.</p>`
+    );
   } else {
     for (let i = 0; i < responseJson.results.length; i++) {
       $('#results-list').append(
@@ -213,25 +215,24 @@ function displayAudioResults(responseJson) {
       );
     }
     if (responseJson.previous == null && responseJson.next != null) {
-      $('.results-nav').append(
+      $('#results-nav').append(
         `
         <br>
         <a class='next' href='${responseJson.next}'>Next</a>
         `
       );
     } else if (responseJson.previous != null && responseJson.next == null) {
-      $('.results-nav').append(
+      $('#results-nav').append(
         `
         <br>
         <a class='prev' href='${responseJson.previous}'>Previous</a>
         `
       );
     } else if (responseJson.previous != null && responseJson.next != null) {
-      $('.results-nav').append(
+      $('#results-nav').append(
         `
         <br>
         <a class='prev' href='${responseJson.previous}'>Previous</a>
-        <br>
         <a class='next' href='${responseJson.next}'>Next</a>
         `
       );
@@ -322,7 +323,7 @@ function watchVideoPlayer() {
 }
 
 function watchPrevNextPhotoVideo() {
-  $('.results-nav').on('click', '.prev_page', function (event) {
+  $('#results-nav').on('click', '.prev_page', function (event) {
     event.preventDefault();
     const url = $('.prev_page').attr('href');
     if ($('.prev_page').attr('href').includes('v1')) {
@@ -335,7 +336,7 @@ function watchPrevNextPhotoVideo() {
     }
     window.location.hash = 'main-div';
   });
-  $('.results-nav').on('click', '.next_page', function (event) {
+  $('#results-nav').on('click', '.next_page', function (event) {
     event.preventDefault();
     if ($('.next_page').attr('href').includes('v1')) {
       const url = $('.next_page').attr('href');
@@ -351,13 +352,13 @@ function watchPrevNextPhotoVideo() {
 }
 
 function watchPrevNextAudio() {
-  $('.results-nav').on('click', '.prev', function (event) {
+  $('#results-nav').on('click', '.prev', function (event) {
     event.preventDefault();
     const url = $('.prev').attr('href') + '&token=' + audioApiKey;
     fetchAudioResults(url);
     window.location.hash = 'main-div';
   });
-  $('.results-nav').on('click', '.next', function (event) {
+  $('#results-nav').on('click', '.next', function (event) {
     event.preventDefault();
     const url = $('.next').attr('href') + '&token=' + audioApiKey;
     fetchAudioResults(url);
