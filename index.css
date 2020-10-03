@@ -94,7 +94,6 @@ input[type='text'] {
   border: 3px #f55255 solid;
   background-color: #e7e7e7;
   color: #111111;
-  padding: 12px 85px 12px 20px;
   font-size: 16px;
   max-width: 300px;
 }
@@ -248,6 +247,10 @@ p {
   font-size: 18px;
 }
 
+input[type='text'] {
+  padding: 12px 33px 12px 20px;
+}
+
 /********** Desktop Styling **********/
 
 @media (min-width: 850px) {
@@ -280,5 +283,9 @@ p {
   #results-nav a {
     margin: 5px 25px;
     font-size: 14px;
+  }
+
+  input[type='text'] {
+    padding: 12px 85px 12px 20px;
   }
 }
