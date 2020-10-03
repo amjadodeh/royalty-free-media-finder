@@ -72,6 +72,11 @@ h3 {
   left: 10px;
 }
 
+video.video {
+  background-size: cover;
+  background-position: center;
+}
+
 .audio {
   width: 80%;
 }
