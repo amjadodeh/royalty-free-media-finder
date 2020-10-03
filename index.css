@@ -6,8 +6,7 @@
 }
 
 body {
-  background-color: #f7fff7;
-  color: #4ecdc4;
+  background-color: #f7f7f7;
   font-family: monospace;
   text-align: center;
 }
@@ -89,6 +88,67 @@ a:link {
 
 a:hover {
   color: #63ebe2;
+}
+
+/********** Landing Page **********/
+
+.landing-body {
+  height: 55vh;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.logo {
+  width: 100px;
+  margin-top: 10px;
+}
+
+h1 {
+  color: #4ecdc4;
+  font-size: 22px;
+  margin: 8px;
+}
+
+#js-form {
+  margin: 35px 0;
+}
+
+#landing-text {
+  margin: 10px auto;
+  max-width: 950px;
+}
+
+.landing-h2 {
+  color: #f55255;
+  font-size: 24px;
+  margin: 5px 0 15px 0;
+}
+
+.landing-p {
+  color: #111111;
+  font-size: 16px;
+  margin: 10px;
+}
+
+.landing-ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  transform: translateX(12px);
+}
+
+.landing-li {
+  list-style-image: url(images/check.png);
+  color: #f55255;
+  font-size: 16px;
+  margin: 0 5px 25px 5px;
+}
+
+.landing-p2 {
+  color: #111111;
+  font-size: 14px;
+  margin: 10px;
 }
 
 /********** Mobile Styling **********/

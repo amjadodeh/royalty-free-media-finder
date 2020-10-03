@@ -5,29 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Royalty Free Media Finder</title>
-    <link rel="shortcut icon" href="images/dl.png" />
+    <link rel="shortcut icon" href="images/logo.png" />
     <link rel="stylesheet" href="index.css" />
   </head>
-  <body>
+  <body class="landing-body">
     <div class="container" id="main-div">
-      <h1>Royalty Free Media Finder</h1>
-
-      <form id="js-form">
-        <select id="js-media-type">
-          <option value="photo">Photo</option>
-          <option value="video">Video</option>
-          <option value="audio">Audio</option>
-        </select>
-
-        <input
-          type="text"
-          name="search-input"
-          id="js-search-input"
-          placeholder="Search"
+      <div id="search-stuff">
+        <img
+          class="logo"
+          src="images/logo.png"
+          alt="Royalty Free Media Finder"
         />
+        <h1>Royalty Free Media Finder</h1>
 
-        <input type="submit" value="Go!" />
-      </form>
+        <form id="js-form">
+          <select id="js-media-type">
+            <option value="photo">Photo</option>
+            <option value="video">Video</option>
+            <option value="audio">Audio</option>
+          </select>
+
+          <input
+            type="text"
+            name="search-input"
+            id="js-search-input"
+            placeholder="Search"
+          />
+
+          <input type="submit" value="Go!" />
+        </form>
+      </div>
+
+      <section id="landing-text">
+        <h2 class="landing-h2">
+          <b> HIGH QUALITY. ROYALTY-FREE. EVERYTHING. </b>
+        </h2>
+        <p class="landing-p">
+          Search through the largest database of high quality royalty-free:
+        </p>
+        <ul class="landing-ul">
+          <li class="landing-li"><b>Photos</b></li>
+          <li class="landing-li"><b>Videos</b></li>
+          <li class="landing-li"><b>Audio</b></li>
+        </ul>
+        <p class="landing-p2">
+          Use them for any project you want. This includes blogs, websites,
+          apps, art or other commercial use cases.
+        </p>
+      </section>
 
       <section id="results" class="hidden">
         <h2>Search results</h2>

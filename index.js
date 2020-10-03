@@ -366,8 +366,10 @@ function watchPrevNextAudio() {
 }
 
 function watchForm() {
-  $('form').submit((event) => {
+  $('#main-div').on('submit', 'form', function (event) {
     event.preventDefault();
+    $('body').removeClass('landing-body');
+    $('#landing-text').addClass('hidden');
     const mediaType = $('#js-media-type').val();
     const searchInput = $('#js-search-input').val();
     submitInputs(mediaType, searchInput);
