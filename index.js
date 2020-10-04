@@ -312,12 +312,12 @@ function watchVideoPlayer() {
   $('#results-list').on('click', '.play', function (event) {
     $(this).prev().prev().get(0).play();
     $(this).attr('src', 'images/pause.png');
-    $(this).attr('class', 'pause');
+    $(this).addClass('pause').removeClass('play');
   });
   $('#results-list').on('click', '.pause', function (event) {
     $(this).prev().prev().get(0).pause();
     $(this).attr('src', 'images/play.png');
-    $(this).attr('class', 'play');
+    $(this).addClass('play').removeClass('pause');
   });
   $('#results-list').on('mouseenter', '.links-div', function (event) {
     if ($(this).prev().attr('class') == 'video' && $(document).width() > 850) {
@@ -325,7 +325,7 @@ function watchVideoPlayer() {
     }
   });
   $('#results-list').on('mouseleave', '.links-div', function (event) {
-    if ($(this).prev().attr('class') == 'video') {
+    if ($(this).prev().attr('class') == 'video' && $(document).width() > 850) {
       $(this).prev().get(0).pause();
     }
   });
