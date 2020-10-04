@@ -85,8 +85,9 @@ video.video {
 }
 
 #search-stuff {
-  margin: 35px 0 55px 0;
-  transform: translateX(43px);
+  width: max-content;
+  margin: 35px auto 55px auto;
+  transform: translateX(42px);
 }
 
 input[type='text'] {
