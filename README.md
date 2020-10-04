@@ -34,4 +34,4 @@ Download:
 ### Back-End
 
 - JavaScript
-- Jquery
+- JQuery
