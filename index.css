@@ -29,6 +29,7 @@ h3 {
   position: relative;
   margin: 0px 15px 30px 15px;
   list-style: none;
+  transform: translateX(-5px);
 }
 
 #results-nav {
@@ -87,7 +88,7 @@ video.video {
 #search-stuff {
   width: max-content;
   margin: 35px auto 55px auto;
-  transform: translateX(42px);
+  transform: translateX(41px);
 }
 
 input[type='text'] {
@@ -125,7 +126,7 @@ input[type='text'] {
   padding: 11px 15px 11px 15px;
   font-size: 16px;
   cursor: pointer;
-  transform: translateX(-85px) translateY(0px);
+  transform: translateX(-83px) translateY(0px);
 }
 
 #js-media-type:hover {
@@ -153,12 +154,12 @@ a:hover {
   align-content: center;
 }
 
-.logo {
+.landing-logo {
   width: 100px;
   margin-top: 10px;
 }
 
-h1 {
+.landing-h1 {
   color: #4ecdc4;
   font-size: 22px;
   margin: 8px;
@@ -248,8 +249,8 @@ p {
   font-size: 18px;
 }
 
-input[type='text'] {
-  padding: 12px 33px 12px 20px;
+#js-search-input {
+  padding: 12px 6px 12px 20px;
 }
 
 /********** Desktop Styling **********/
@@ -286,7 +287,7 @@ input[type='text'] {
     font-size: 14px;
   }
 
-  input[type='text'] {
+  #js-search-input {
     padding: 12px 85px 12px 20px;
   }
 }

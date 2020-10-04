@@ -320,7 +320,7 @@ function watchVideoPlayer() {
     $(this).attr('class', 'play');
   });
   $('#results-list').on('mouseenter', '.links-div', function (event) {
-    if ($(this).prev().attr('class') == 'video') {
+    if ($(this).prev().attr('class') == 'video' && $(document).width() > 850) {
       $(this).prev().get(0).play();
     }
   });
