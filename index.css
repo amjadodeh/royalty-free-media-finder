@@ -99,19 +99,19 @@ input[type='text'] {
   max-width: 300px;
 }
 
-input[type='submit'] {
+#js-search-button {
   position: absolute;
+  width: 15px;
   color: #111111;
   border: 3px solid #e7e7e7;
   background-color: #e7e7e7;
-  padding: 9px 15px;
+  padding: 11px 13px 11px 17px;
   font-size: 16px;
   cursor: pointer;
-  background-image: url(images/search.png);
-  transform: translateX(-64px) translateY(3px);
+  transform: translateX(-54px) translateY(3px);
 }
 
-input[type='submit']:hover {
+#js-search-button:hover {
   color: #f7f7f7;
   border-color: #f55255;
   background-color: #f55255;

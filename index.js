@@ -299,6 +299,15 @@ function findDownloadVideo(i, responseJson) {
 
 /********** EVENT HANDLER FUNCTIONS **********/
 
+function searchButtonImage() {
+  $('#search-stuff').on('mouseenter', '#js-search-button', function (event) {
+    $('#js-search-button').attr('src', 'images/searchwhite.png');
+  });
+  $('#search-stuff').on('mouseleave', '#js-search-button', function (event) {
+    $('#js-search-button').attr('src', 'images/searchblack.png');
+  });
+}
+
 function watchVideoPlayer() {
   $('#results-list').on('click', '.play', function (event) {
     $(this).prev().prev().get(0).play();
@@ -381,3 +390,4 @@ $(watchForm);
 $(watchPrevNextPhotoVideo);
 $(watchPrevNextAudio);
 $(watchVideoPlayer);
+$(searchButtonImage);
