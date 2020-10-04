@@ -13,7 +13,7 @@ body {
 
 .result p,
 h3 {
-  color: #ffe66d;
+  color: #ffffff;
 }
 
 .hidden {
@@ -93,7 +93,7 @@ video.video {
 
 input[type='text'] {
   position: relative;
-  border: 3px #f55255 solid;
+  border: 3px #707eff solid;
   background-color: #e7e7e7;
   color: #111111;
   font-size: 16px;
@@ -114,14 +114,14 @@ input[type='text'] {
 
 #js-search-button:hover {
   color: #f7f7f7;
-  border-color: #f55255;
-  background-color: #f55255;
+  border-color: #707eff;
+  background-color: #707eff;
 }
 
 #js-media-type {
   position: absolute;
   color: #111111;
-  border: 3px solid #f55255;
+  border: 3px solid #707eff;
   background-color: #e7e7e7;
   padding: 11px 15px 11px 15px;
   font-size: 16px;
@@ -131,18 +131,18 @@ input[type='text'] {
 
 #js-media-type:hover {
   color: #f7f7f7;
-  border-color: #f55255;
-  background-color: #4ecdc4;
+  border-color: #707eff;
+  background-color: #707eff;
 }
 
 /***** Link Styling *****/
 
 a:link {
-  color: #4ecdc4;
+  color: #31b55d;
 }
 
 a:hover {
-  color: #63ebe2;
+  color: #4dda7c;
 }
 
 /********** Landing Page **********/
@@ -160,7 +160,7 @@ a:hover {
 }
 
 .landing-h1 {
-  color: #4ecdc4;
+  color: #238042;
   font-size: 22px;
   margin: 8px;
 }
@@ -171,7 +171,7 @@ a:hover {
 }
 
 .landing-h2 {
-  color: #f55255;
+  color: #31b55d;
   font-size: 24px;
   margin: 5px 0 15px 0;
 }
@@ -191,7 +191,7 @@ a:hover {
 
 .landing-li {
   list-style-image: url(images/check.png);
-  color: #f55255;
+  color: #707eff;
   font-size: 16px;
   margin: 0 5px 25px 5px;
 }
