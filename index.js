@@ -380,6 +380,9 @@ function watchForm() {
     event.preventDefault();
     $('body').removeClass('landing-body');
     $('#landing-text').addClass('hidden');
+    $('.landing-logo').addClass('logo').removeClass('landing-logo');
+    $('.landing-h1').addClass('h1').removeClass('landing-h1');
+    $('#logo-title').addClass('logo-title-post-land');
     const mediaType = $('#js-media-type').val();
     const searchInput = $('#js-search-input').val();
     submitInputs(mediaType, searchInput);

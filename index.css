@@ -87,11 +87,11 @@ video.video {
 
 #search-stuff {
   width: max-content;
-  margin: 35px auto 55px auto;
+  margin: 30px auto 55px auto;
   transform: translateX(41px);
 }
 
-input[type='text'] {
+#js-search-input {
   position: relative;
   border: 3px #707eff solid;
   background-color: #e7e7e7;
@@ -135,6 +135,24 @@ input[type='text'] {
   background-color: #707eff;
 }
 
+.logo-title-post-land {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 60px;
+  margin: 35px 5px 0 5px;
+}
+
+.h1 {
+  color: #238042;
+  font-size: 22px;
+  margin: 17px 5px 0 5px;
+}
+
 /***** Link Styling *****/
 
 a:link {
@@ -155,14 +173,14 @@ a:hover {
 }
 
 .landing-logo {
-  width: 100px;
+  width: 80px;
   margin-top: 10px;
 }
 
 .landing-h1 {
   color: #238042;
   font-size: 22px;
-  margin: 8px;
+  margin: 8px 0;
 }
 
 #landing-text {
@@ -289,5 +307,22 @@ p {
 
   #js-search-input {
     padding: 12px 85px 12px 20px;
+  }
+
+  .logo-title-post-land {
+    flex-direction: row;
+  }
+
+  .landing-logo {
+    width: 90px;
+  }
+
+  .logo {
+    width: 60px;
+    margin: 35px 5px 0 5px;
+  }
+
+  .h1 {
+    margin: 35px 9px 0 9px;
   }
 }
