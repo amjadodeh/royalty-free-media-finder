@@ -12,11 +12,15 @@ Landing Page:
 
 ![landing page](screenshots/landing-page.png)
 
-![selecting media type](screenshots/media-type-selector.png)
-
 Search:
 
+![selecting media type](screenshots/media-type-selector.png)
+
+Search Results:
+
 ![search results](screenshots/search.jpg)
+
+Download:
 
 ![download](screenshots/download.png)
 
