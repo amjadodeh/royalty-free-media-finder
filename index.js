@@ -347,7 +347,7 @@ function watchPrevNextPhotoVideo() {
         videoSearchURL + $('.prev_page').attr('href') + '&page=' + videoPage;
       fetchVideoResults(url);
     }
-    window.location.hash = 'main-div';
+    window.scrollTo(0, 0);
   });
   $('#results-nav').on('click', '.next_page', function (event) {
     event.preventDefault();
@@ -360,7 +360,7 @@ function watchPrevNextPhotoVideo() {
         videoSearchURL + $('.next_page').attr('href') + '&page=' + videoPage;
       fetchVideoResults(url);
     }
-    window.location.hash = 'main-div';
+    window.scrollTo(0, 0);
   });
 }
 
@@ -369,13 +369,13 @@ function watchPrevNextAudio() {
     event.preventDefault();
     const url = $('.prev').attr('href') + '&token=' + audioApiKey;
     fetchAudioResults(url);
-    window.location.hash = 'main-div';
+    window.scrollTo(0, 0);
   });
   $('#results-nav').on('click', '.next', function (event) {
     event.preventDefault();
     const url = $('.next').attr('href') + '&token=' + audioApiKey;
     fetchAudioResults(url);
-    window.location.hash = 'main-div';
+    window.scrollTo(0, 0);
   });
 }
 
