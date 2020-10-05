@@ -7,7 +7,7 @@ var videoPage = 1;
 const audioSearchURL = 'https://freesound.org/apiv2/search/text/';
 const audioApiKey = 'HvhIQH3WHGMQoU37KAwlU6PG4p4O7M3eVjRvufax';
 
-/********** TEMPLATE GENERATION FUNCTIONS **********/
+/********** FETCH FUNCTIONS **********/
 
 function fetchPhotoResults(url) {
   fetch(url, {
@@ -27,7 +27,10 @@ function fetchPhotoResults(url) {
     })
     .then((json) => displayPhotoResults(json))
     .catch((err) => {
-      $('#results-list').text(`Something went wrong: ${err.message}`);
+      $('#results-list').text(
+        `Something went wrong, please try again with another search term.`
+      );
+      console.log(`Something went wrong: ${err.message}`);
     });
 }
 
@@ -49,7 +52,10 @@ function fetchVideoResults(url) {
     })
     .then((json) => displayVideoResults(json))
     .catch((err) => {
-      $('#results-list').text(`Something went wrong: ${err.message}`);
+      $('#results-list').text(
+        `Something went wrong, please try again with another search term.`
+      );
+      console.log(`Something went wrong: ${err.message}`);
     });
 }
 
@@ -63,7 +69,10 @@ function fetchAudioResults(url) {
     })
     .then((responseJson) => displayAudioResults(responseJson))
     .catch((err) => {
-      $('#results-list').text(`Something went wrong: ${err.message}`);
+      $('#results-list').text(
+        `Something went wrong, please try again with another search term.`
+      );
+      console.log(`Something went wrong: ${err.message}`);
     });
 }
 
@@ -77,7 +86,6 @@ function formatQueryParams(params) {
 /********** RENDER FUNCTION **********/
 
 function displayPhotoResults(responseJson) {
-  console.log(responseJson);
   $('#results-list').empty();
   $('#results-nav').empty();
   if (responseJson.photos.length === 0) {
@@ -131,7 +139,6 @@ function displayPhotoResults(responseJson) {
 }
 
 function displayVideoResults(responseJson) {
-  console.log(responseJson);
   $('#results-list').empty();
   $('#results-nav').empty();
   if (responseJson.videos.length === 0) {
@@ -192,7 +199,6 @@ function displayVideoResults(responseJson) {
 }
 
 function displayAudioResults(responseJson) {
-  console.log(responseJson);
   $('#results-list').empty();
   $('#results-nav').empty();
   if (responseJson.results.length === 0) {
@@ -259,8 +265,6 @@ function submitInputs(type, input) {
 
     const queryString = formatQueryParams(params);
     const url = audioSearchURL + '?' + queryString;
-
-    console.log(url);
 
     fetchAudioResults(url);
   }
@@ -389,8 +393,14 @@ function watchForm() {
   });
 }
 
-$(watchForm);
-$(watchPrevNextPhotoVideo);
-$(watchPrevNextAudio);
-$(watchVideoPlayer);
-$(searchButtonImage);
+/********** ONE FUNCTION TO RUN THEM ALL **********/
+
+function theChosenOne() {
+  $(watchForm);
+  $(watchPrevNextPhotoVideo);
+  $(watchPrevNextAudio);
+  $(watchVideoPlayer);
+  $(searchButtonImage);
+}
+
+$(theChosenOne);
