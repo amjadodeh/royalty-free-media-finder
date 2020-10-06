@@ -396,11 +396,11 @@ function watchForm() {
 /********** ONE FUNCTION TO RUN THEM ALL **********/
 
 function theChosenOne() {
-  $(watchForm);
-  $(watchPrevNextPhotoVideo);
-  $(watchPrevNextAudio);
-  $(watchVideoPlayer);
-  $(searchButtonImage);
+  watchForm();
+  watchPrevNextPhotoVideo();
+  watchPrevNextAudio();
+  watchVideoPlayer();
+  searchButtonImage();
 }
 
 $(theChosenOne);
