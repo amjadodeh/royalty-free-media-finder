@@ -1,4 +1,4 @@
-# Royalty Free Media Finder
+# Royalty-Free Media Finder
 
 The largest database of royalty-free content. Users can search for high quality photos, videos, and audio. Everything is free to use for any project.
 
