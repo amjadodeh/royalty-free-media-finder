@@ -88,7 +88,7 @@ video.video {
 #search-stuff {
   width: max-content;
   margin: 30px auto 55px auto;
-  transform: translateX(41px);
+  transform: translateX(37px);
 }
 
 #js-search-input {
@@ -98,18 +98,26 @@ video.video {
   color: #111111;
   font-size: 16px;
   max-width: 300px;
+  height: 17px;
+}
+
+/* Input Container styling */
+input:focus {
+  outline: none; /* Removes the outline on focus */
+  border: 1px solid gray; /* Optional: sets a different border color on focus */
 }
 
 #js-search-button {
   position: absolute;
-  width: 15px;
+  width: 13px;
+  height: 13px;
   color: #111111;
   border: 3px solid #e7e7e7;
   background-color: #e7e7e7;
   padding: 11px 13px 11px 17px;
   font-size: 16px;
   cursor: pointer;
-  transform: translateX(-54px) translateY(3px);
+  transform: translateX(-52px) translateY(3px);
 }
 
 #js-search-button:hover {
@@ -123,10 +131,28 @@ video.video {
   color: #111111;
   border: 3px solid #707eff;
   background-color: #e7e7e7;
-  padding: 11px 15px 11px 15px;
+  padding: 11px 16px 11px 15px;
   font-size: 16px;
   cursor: pointer;
-  transform: translateX(-83px) translateY(0px);
+  transform: translateX(-76px) translateY(0px);
+  height: 47px;
+}
+
+/* Select Container styling */
+.select-container {
+  position: relative;
+  overflow: hidden;
+}
+select {
+  -webkit-appearance: none; /* for Chrome */
+  -moz-appearance: none; /* for Firefox */
+  appearance: none; /* Specifying for other browsers */
+  border: none; /* Removing default border */
+  padding: 10px;
+}
+select:focus {
+  outline: none; /* Remove the outline */
+  border: none; /* Remove border when select is focused */
 }
 
 #js-media-type:hover {
