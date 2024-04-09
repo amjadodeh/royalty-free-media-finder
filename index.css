@@ -229,7 +229,7 @@ a:hover {
 .landing-p {
   color: #111111;
   font-size: 16px;
-  margin: 10px;
+  margin: 10px 10px 22px 10px;
 }
 
 .landing-ul {
@@ -264,7 +264,7 @@ p {
 }
 
 .dl-image {
-  width: 26px;
+  width: 19px;
 }
 
 .links-div {
@@ -288,10 +288,23 @@ p {
 .play,
 .pause {
   position: absolute;
-  top: calc(50% + 5px);
+  top: calc(48% + 5px);
   left: calc(50% + 5px);
   width: 60px;
   transform: translate(-50%, -50%);
+}
+
+.pause {
+  animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 #results-nav a {
