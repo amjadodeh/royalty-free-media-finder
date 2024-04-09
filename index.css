@@ -99,6 +99,8 @@ video.video {
   font-size: 16px;
   max-width: 300px;
   height: 17px;
+  padding-top: 13px !important;
+  padding-bottom: 11px !important;
 }
 
 /* Input Container styling */
@@ -148,7 +150,7 @@ select {
   -moz-appearance: none; /* for Firefox */
   appearance: none; /* Specifying for other browsers */
   border: none; /* Removing default border */
-  padding: 10px;
+  padding: 10px 12px 10px 12px;
 }
 select:focus {
   outline: none; /* Remove the outline */
