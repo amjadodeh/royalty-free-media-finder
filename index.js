@@ -314,6 +314,12 @@ function searchButtonImage() {
 
 function watchVideoPlayer() {
   $('#results-list').on('click', '.play', function (event) {
+    $('.pause').each(function () {
+      $(this).prev().prev().get(0).pause();
+      $(this).attr('src', 'images/play.png');
+      $(this).addClass('play').removeClass('pause');
+    });
+
     $(this).prev().prev().get(0).play();
     $(this).attr('src', 'images/pause.png');
     $(this).addClass('pause').removeClass('play');
@@ -323,6 +329,33 @@ function watchVideoPlayer() {
     $(this).attr('src', 'images/play.png');
     $(this).addClass('play').removeClass('pause');
   });
+
+  $('#results-list').on('click', '.links-div', function (event) {
+    if (
+      $(this).prev().attr('class') == 'video' &&
+      $(document).width() < 850 &&
+      $(this).next().attr('class') == 'play'
+    ) {
+      $('.pause').each(function () {
+        $(this).prev().prev().get(0).pause();
+        $(this).attr('src', 'images/play.png');
+        $(this).addClass('play').removeClass('pause');
+      });
+
+      $(this).prev().get(0).play();
+      $(this).next().attr('src', 'images/pause.png');
+      $(this).next().addClass('pause').removeClass('play');
+    } else if (
+      $(this).prev().attr('class') == 'video' &&
+      $(document).width() < 850 &&
+      $(this).next().attr('class') == 'pause'
+    ) {
+      $(this).prev().get(0).pause();
+      $(this).next().attr('src', 'images/play.png');
+      $(this).next().addClass('play').removeClass('pause');
+    }
+  });
+
   $('#results-list').on('mouseenter', '.links-div', function (event) {
     if ($(this).prev().attr('class') == 'video' && $(document).width() > 850) {
       $(this).prev().get(0).play();
