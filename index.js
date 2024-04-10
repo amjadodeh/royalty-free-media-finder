@@ -313,47 +313,62 @@ function searchButtonImage() {
 }
 
 function watchVideoPlayer() {
-  $('#results-list').on('click', '.play', function (event) {
-    $('.pause').each(function () {
-      $(this).prev().prev().get(0).pause();
-      $(this).attr('src', 'images/play.png');
-      $(this).addClass('play').removeClass('pause');
-    });
+  function handleVideoEvent(element) {
+    if (element.prev().attr('class') == 'video' && $(document).width() < 850) {
+      if (element.next().attr('class') == 'play') {
+        $('.pause').each(function () {
+          $(this).prev().prev().get(0).pause();
+          $(this).attr('src', 'images/play.png');
+          $(this).addClass('play').removeClass('pause');
+        });
 
-    $(this).prev().prev().get(0).play();
-    $(this).attr('src', 'images/pause.png');
-    $(this).addClass('pause').removeClass('play');
-  });
-  $('#results-list').on('click', '.pause', function (event) {
-    $(this).prev().prev().get(0).pause();
-    $(this).attr('src', 'images/play.png');
-    $(this).addClass('play').removeClass('pause');
-  });
-
-  $('#results-list').on('click', '.links-div', function (event) {
-    if (
-      $(this).prev().attr('class') == 'video' &&
-      $(document).width() < 850 &&
-      $(this).next().attr('class') == 'play'
-    ) {
+        element.prev().get(0).play();
+        element.next().attr('src', 'images/pause.png');
+        element.next().addClass('pause').removeClass('play');
+      } else if (element.next().attr('class') == 'pause') {
+        element.prev().get(0).pause();
+        element.next().attr('src', 'images/play.png');
+        element.next().addClass('play').removeClass('pause');
+      }
+    }
+  }
+  function handleImgEvent(element) {
+    if (element.attr('class') == 'play') {
       $('.pause').each(function () {
         $(this).prev().prev().get(0).pause();
         $(this).attr('src', 'images/play.png');
         $(this).addClass('play').removeClass('pause');
       });
 
-      $(this).prev().get(0).play();
-      $(this).next().attr('src', 'images/pause.png');
-      $(this).next().addClass('pause').removeClass('play');
-    } else if (
-      $(this).prev().attr('class') == 'video' &&
-      $(document).width() < 850 &&
-      $(this).next().attr('class') == 'pause'
-    ) {
-      $(this).prev().get(0).pause();
-      $(this).next().attr('src', 'images/play.png');
-      $(this).next().addClass('play').removeClass('pause');
+      element.prev().prev().get(0).play();
+      element.attr('src', 'images/pause.png');
+      element.addClass('pause').removeClass('play');
+    } else if (element.attr('class') == 'pause') {
+      element.prev().prev().get(0).pause();
+      element.attr('src', 'images/play.png');
+      element.addClass('play').removeClass('pause');
     }
+  }
+
+  $('#results-list').on('click', '.links-div', function (event) {
+    handleVideoEvent($(this));
+  });
+  $('#results-list').on('scroll', '.links-div', function (event) {
+    handleVideoEvent($(this));
+  });
+
+  $('#results-list').on('click', '.play', function (event) {
+    handleImgEvent($(this));
+  });
+  $('#results-list').on('scroll', '.play', function (event) {
+    handleImgEvent($(this));
+  });
+
+  $('#results-list').on('click', '.pause', function (event) {
+    handleImgEvent($(this));
+  });
+  $('#results-list').on('scroll', '.pause', function (event) {
+    handleImgEvent($(this));
   });
 
   $('#results-list').on('mouseenter', '.links-div', function (event) {
