@@ -353,27 +353,12 @@ function watchVideoPlayer() {
   $('#results-list').on('click', '.links-div', function (event) {
     handleVideoEvent($(this));
   });
-  $('#results-list').on('scroll', '.links-div', function (event) {
-    handleVideoEvent($(this));
-  });
-  $('#results-list').on('scroll', function (event) {
-    var target = $(event.target);
-    if (target.hasClass('links-div')) {
-      handleVideoEvent(target);
-    }
-  });
 
   $('#results-list').on('click', '.play', function (event) {
     handleImgEvent($(this));
   });
-  $('#results-list').on('scroll', '.play', function (event) {
-    handleImgEvent($(this));
-  });
 
   $('#results-list').on('click', '.pause', function (event) {
-    handleImgEvent($(this));
-  });
-  $('#results-list').on('scroll', '.pause', function (event) {
     handleImgEvent($(this));
   });
 
